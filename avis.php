@@ -1,8 +1,9 @@
-<?php
 header('Content-Type: application/json');
 
+// Accepter la clé depuis les headers ou l'URL
 $headers = getallheaders();
-$apiKey = $headers['X-API-Key'] ?? null;
+$apiKey = $headers['X-API-Key'] ?? $_GET['api_key'] ?? null;
+
 $validApiKey = getenv('API_KEY');
 
 if (!$apiKey || $apiKey !== $validApiKey) {
