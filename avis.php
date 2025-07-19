@@ -1,13 +1,14 @@
 <?php
-// header doit être le tout premier à s’exécuter
-header('Content-Type:application/json');
+header('Content-Type: application/json');
 
-$data = json_decode(file_get_contents('php://input'), true);
+$input = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($data['cle']) || $data['cle'] !== 'BLUEDREAM-API-SECRET') {
-    echo json_encode(["error" => "Clé API non définie ou incorrecte."]);
+if (!isset($input['cle']) || $input['cle'] !== 'BLUEDREAM-API-SECRET') {
+    echo json_encode(['error' => 'Clé API non définie.']);
     exit;
 }
 
-// Réponse simulée OK
-echo json_encode(["message" => "API valide, accès autorisé."]);
+echo json_encode([
+    ['auteur' => 'Marie', 'avis' => 'Super prestation !', 'note' => 5],
+    ['auteur' => 'Luc', 'avis' => 'Très satisfait du service.', 'note' => 4.5]
+]);
