@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ['auteur' => 'Luc', 'avis' => 'Très satisfait du service.', 'note' => 4.5],
         ]);
     } else {
-        echo json_encode(['error' => 'Clé API non définie ou invalide.']);
+        echo json_encode(['error' => 'Clé API non définie.']);
     }
 } else {
     echo json_encode(['error' => 'Méthode non autorisée.']);
