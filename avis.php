@@ -1,9 +1,4 @@
 <?php
-// Pas de saut de ligne, pas d'espace, PAS UN SEUL caractère avant le <?php ci-dessus !!
-
-// Forcer désactivation de toute sortie avant headers
-ob_start();
-
 header('Content-Type: application/json');
 
 $headers = getallheaders();
@@ -17,4 +12,3 @@ if (!$apiKey || $apiKey !== $validApiKey) {
 }
 
 echo json_encode(["message" => "API OK ✅"]);
-ob_end_flush();
