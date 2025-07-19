@@ -1,14 +1,15 @@
 <?php
 header('Content-Type: application/json');
 
-$input = json_decode(file_get_contents('php://input'), true);
+$headers = getallheaders();
+$apiKey = $headers['X-API-Key'] ?? null;
+$validApiKey = getenv('API_KEY');
 
-if (!isset($input['cle']) || $input['cle'] !== 'BLUEDREAM-API-SECRET') {
-    echo json_encode(['error' => 'Clé API non définie.']);
+if (!$apiKey || $apiKey !== $validApiKey) {
+    http_response_code(401);
+    echo json_encode(["error" => "Clé API non définie ou invalide."]);
     exit;
 }
 
-echo json_encode([
-    ['auteur' => 'Marie', 'avis' => 'Super prestation !', 'note' => 5],
-    ['auteur' => 'Luc', 'avis' => 'Très satisfait du service.', 'note' => 4.5]
-]);
+echo json_encode(["message" => "API OK ✅"]);
+
